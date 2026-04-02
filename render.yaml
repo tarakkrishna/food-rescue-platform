@@ -5,12 +5,11 @@ services:
     env: node
     rootDir: food-rescue/food-rescue-backend
     buildCommand: |
-      apt-get update && apt-get install -y openjdk-17-jdk && 
-      export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && 
+      curl -O https://archive.apache.org/dist/maven/maven-3/3.8.6/binaries/apache-maven-3.8.6-bin.tar.gz &&
+      tar -xzf apache-maven-3.8.6-bin.tar.gz &&
+      export PATH=$PWD/apache-maven-3.8.6/bin:$PATH &&
       mvn clean package -DskipTests
-    startCommand: |
-      export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64 && 
-      java -jar target/food-rescue-backend-1.0.0.jar
+    startCommand: java -jar target/food-rescue-backend-1.0.0.jar
     healthCheckPath: /actuator/health
     envVars:
       - key: SPRING_PROFILES_ACTIVE
