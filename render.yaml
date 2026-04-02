@@ -4,7 +4,7 @@ services:
     env: java
     repo: https://github.com/tarakkrishna/food-rescue-platform.git
     rootDir: food-rescue-backend
-    buildCommand: mvn clean package -DskipTests
+    buildCommand: mvn clean install -DskipTests
     startCommand: java -jar target/food-rescue-backend-1.0.0.jar
     healthCheckPath: /actuator/health
     envVars:
@@ -12,6 +12,8 @@ services:
         value: production
       - key: JWT_SECRET
         value: foodRescueSecretKey2024ForProduction
+      - key: PORT
+        value: 10000
       
   - type: pserv
     name: food-rescue-db
@@ -25,7 +27,7 @@ services:
     env: static
     repo: https://github.com/tarakkrishna/food-rescue-platform.git
     rootDir: food-rescue-frontend
-    buildCommand: npm run build
+    buildCommand: npm install && npm run build
     publishDir: build
     envVars:
       - key: REACT_APP_API_URL
