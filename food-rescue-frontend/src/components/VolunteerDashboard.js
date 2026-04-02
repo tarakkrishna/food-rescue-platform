@@ -35,14 +35,14 @@ const VolunteerDashboard = () => {
     
     try {
       // Fetch nearby pickups (claimed food ready for pickup)
-      const pickupsResponse = await fetch(`http://localhost:8080/volunteer/nearby-pickups?lat=${user.latitude}&lon=${user.longitude}&radiusKm=10`, {
+      const pickupsResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8080'}/volunteer/nearby-pickups?lat=${user.latitude}&lon=${user.longitude}&radiusKm=10`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
       
       // Fetch nearby drops (food ready for delivery)
-      const dropsResponse = await fetch(`http://localhost:8080/volunteer/nearby-drops?lat=${user.latitude}&lon=${user.longitude}&radiusKm=10`, {
+      const dropsResponse = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8080'}/volunteer/nearby-drops?lat=${user.latitude}&lon=${user.longitude}&radiusKm=10`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
@@ -111,7 +111,7 @@ const VolunteerDashboard = () => {
   const acceptPickupTask = async (claimId) => {
     setActionLoading(claimId);
     try {
-      const response = await fetch(`http://localhost:8080/volunteer/accept-pickup/${claimId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8080'}/volunteer/accept-pickup/${claimId}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -136,7 +136,7 @@ const VolunteerDashboard = () => {
   const acceptDeliveryTask = async (claimId) => {
     setActionLoading(claimId);
     try {
-      const response = await fetch(`http://localhost:8080/volunteer/accept-delivery/${claimId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8080'}/volunteer/accept-delivery/${claimId}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`

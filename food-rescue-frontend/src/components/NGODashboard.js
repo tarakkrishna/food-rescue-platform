@@ -61,7 +61,7 @@ const NGODashboard = () => {
     }
     
     try {
-      const response = await fetch('http://localhost:8080/api/users/update-location', {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8080'}/api/users/update-location`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -176,7 +176,7 @@ const NGODashboard = () => {
     setClaimingId(foodId);
     
     try {
-      const response = await fetch(`http://localhost:8080/food/claim/${foodId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8080'}/food/claim/${foodId}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -225,7 +225,7 @@ const NGODashboard = () => {
 
   const requestTransport = async (claimId) => {
     try {
-      const response = await fetch(`http://localhost:8080/food/request-transport/${claimId}`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8080'}/food/request-transport/${claimId}`, {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -399,7 +399,7 @@ const NGODashboard = () => {
                 className="btn btn-info btn-sm"
                 onClick={() => {
                   console.log('Testing API connection...');
-                  fetch('http://localhost:8080/food/available', {
+                  fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:8080'}/food/available`, {
                     headers: {
                       'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }

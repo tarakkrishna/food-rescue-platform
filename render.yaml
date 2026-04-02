@@ -16,13 +16,10 @@ services:
       - key: PORT
         value: 10000
       
-  # MySQL Database
+  # PostgreSQL Database
   - type: pserv
     name: food-rescue-db
-    env: mysql
-    plan: free
-    databaseName: food_rescue
-    user: foodrescue
+    env: postgres
       
   # Frontend Service
   - type: web
