@@ -7,12 +7,20 @@ services:
     rootDir: food-rescue-backend
     buildCommand: mvn clean package -DskipTests
     startCommand: java -jar target/food-rescue-backend-1.0.0.jar
+    healthCheckPath: /actuator/health
     envVars:
       - key: SPRING_PROFILES_ACTIVE
         value: production
-      - key: PORT
-        value: 10000
-    healthCheckPath: /actuator/health
+      - key: JWT_SECRET
+        value: foodRescueSecretKey2024ForProduction
+      - key: JAVA_OPTS
+        value: -Xmx512m -Xms256m
+    
+  # PostgreSQL Database
+  - type: pserv
+    name: food-rescue-db
+    databaseName: food_rescue
+    user: foodrescue
     
   # Frontend Service
   - type: web
@@ -25,3 +33,4 @@ services:
     envVars:
       - key: REACT_APP_API_URL
         value: https://food-rescue-backend.onrender.com
+        sync: false
