@@ -26,7 +26,7 @@ services:
     repo: https://github.com/tarakkrishna/food-rescue-platform.git
     rootDir: food-rescue-frontend
     buildCommand: npm run build
-    publishDirectory: build
+    publishDir: build
     envVars:
       - key: REACT_APP_API_URL
         value: https://food-rescue-backend.onrender.com
