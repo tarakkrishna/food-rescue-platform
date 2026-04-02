@@ -13,6 +13,14 @@ services:
       - key: JWT_SECRET
         value: foodRescueSecretKey2024ForProduction
       
+  - type: pserv
+    name: food-rescue-db
+    env: mysql
+    plan: free
+    databases:
+      - name: food_rescue
+        user: foodrescue
+      
   - type: web
     name: food-rescue-frontend
     env: static
