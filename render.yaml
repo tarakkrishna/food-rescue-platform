@@ -3,10 +3,9 @@ services:
   - type: web
     name: food-rescue-backend
     env: java
-    repo: https://github.com/tarakkrishna/food-rescue-platform.git
     rootDir: food-rescue/food-rescue-backend
     buildCommand: mvn clean package -DskipTests
-    startCommand: java -jar target/food-rescue-backend-1.0.0.jar
+    startCommand: java -jar target/*.jar
     healthCheckPath: /actuator/health
     envVars:
       - key: SPRING_PROFILES_ACTIVE
@@ -15,20 +14,25 @@ services:
         value: foodRescueSecretKey2024ForProduction
       - key: PORT
         value: 10000
-      
+      - key: DATABASE_URL
+        fromService:
+          type: pserv
+          name: food-rescue-db
+          property: connectionString
+
   # PostgreSQL Database
   - type: pserv
     name: food-rescue-db
     env: postgres
-      
+    plan: free
+
   # Frontend Service
   - type: web
     name: food-rescue-frontend
     env: static
-    repo: https://github.com/tarakkrishna/food-rescue-platform.git
     rootDir: food-rescue/food-rescue-frontend
     buildCommand: npm install && npm run build
-    publishDir: build
+    staticPublishPath: build
     envVars:
       - key: REACT_APP_API_URL
         value: https://food-rescue-backend.onrender.com
