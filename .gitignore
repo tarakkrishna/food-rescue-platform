@@ -1,0 +1,32 @@
+# Backend
+food-rescue-backend/target/
+food-rescue-backend/.idea/
+food-rescue-backend/*.iml
+food-rescue-backend/application-local.properties
+food-rescue-backend/*.log
+food-rescue-backend/*.class
+
+# Frontend
+food-rescue-frontend/node_modules/
+food-rescue-frontend/build/
+food-rescue-frontend/.env.local
+food-rescue-frontend/.env.development.local
+food-rescue-frontend/.env.test.local
+food-rescue-frontend/.env.production.local
+food-rescue-frontend/npm-debug.log*
+food-rescue-frontend/yarn-debug.log*
+food-rescue-frontend/yarn-error.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+*.env
