@@ -1,5 +1,4 @@
 services:
-  # Backend Service
   - type: web
     name: food-rescue-backend
     env: java
@@ -13,24 +12,14 @@ services:
         value: production
       - key: JWT_SECRET
         value: foodRescueSecretKey2024ForProduction
-      - key: JAVA_OPTS
-        value: -Xmx512m -Xms256m
-    
-  # PostgreSQL Database
-  - type: pserv
-    name: food-rescue-db
-    databaseName: food_rescue
-    user: foodrescue
-    
-  # Frontend Service
+      
   - type: web
     name: food-rescue-frontend
     env: static
     repo: https://github.com/tarakkrishna/food-rescue-platform.git
     rootDir: food-rescue-frontend
     buildCommand: npm run build
-    publishDir: build
+    publishDirectory: build
     envVars:
       - key: REACT_APP_API_URL
         value: https://food-rescue-backend.onrender.com
-        sync: false
