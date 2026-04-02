@@ -17,9 +17,8 @@ services:
     name: food-rescue-db
     env: mysql
     plan: free
-    databases:
-      - name: food_rescue
-        user: foodrescue
+    databaseName: food_rescue
+    user: foodrescue
       
   - type: web
     name: food-rescue-frontend
